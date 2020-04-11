@@ -70,6 +70,16 @@ class PlansController {
             res.redirect("/admin/plans/create");
         }
     }
+    async deactivate(req, res) {
+        var id = req.params.id;
+        await PlansService.deactivate(id);
+        res.redirect("/admin/plans");
+    }
+    async activate(req, res) {
+        var id = req.params.id;
+        await PlansService.activate(id);
+        res.redirect("/admin/plans");
+    }
 }
 
 module.exports = new PlansController();

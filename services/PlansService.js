@@ -18,6 +18,24 @@ class PlansService {
             return undefined;
         }
     }
+    async deactivate(id) {
+        try {
+            var plan = await this.getById(id);
+            plan.deactivated = true;
+            await plan.save();
+        } catch (err) {
+            return false;
+        }
+    }
+    async activate(id) {
+        try {
+            var plan = await this.getById(id);
+            plan.deactivated = false;
+            await plan.save();
+        } catch (err) {
+            return false;
+        }
+    }
     async update(id, data) {
         var errors = {};
         var isValid = this.validate(data, errors);
